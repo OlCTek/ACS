@@ -105,7 +105,7 @@ def passCorrect2():
 	print("Access granted. Welcome!")
 	pygame.mixer.music.load('pass12File.mp3')
 	pygame.mixer.music.play()
-	time.sleep(
+	time.sleep(5)
 	
 def passIncorrect(b):
 	#Notify user that the password spoken was incorrect
@@ -243,7 +243,7 @@ def main():
 			unknown()
 		for code in password:
 			#Check if password entered is correct
-			for b < 3:
+			if b < 3:
 				#Give user three vocal attempts to enter password
 				if code in com2:
 					#Grant user access if password is correct
@@ -253,10 +253,10 @@ def main():
 				else:
 					#Deny user access if password is incorrect
 					passIncorrect()
-					for b <= 3:
+					if b <= 3:
 						passIncorrect(b)
 						b += 1
-			for b == 3:
+			if b == 3:
 				#Give user typed input option if vocal attempts could not be understood
 				userInpuT(com2)
 				if code in com2:
@@ -268,10 +268,10 @@ def main():
 					c += 2
 				else:
 					#Deny user access if password is incorrect
-					for c < 1:
+					if c < 1:
 						passIncorrecT(c)
 						c += 1
-					for c == 1:
+					if c == 1:
 						passIncorrect(c)
 	
 	while a == 2:
