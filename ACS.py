@@ -133,7 +133,7 @@ def passIncorrecT(c):
 		pygame.mixer.music.play()
 		time.sleep(4)
 	if c > 0:
-		print("Access denied. Again")
+		print("Access denied. Again.")
 		pygame.mixer.music.load('pass01File.mp3')
 		pygame.mixer.music.play()
 		time.sleep(2)
