@@ -6,6 +6,7 @@ ac = sr.Recognizer()
 import webbrowser as wb
 from easygui import *
 from gtts import gTTS
+import random
 import pygame
 pygame.init()
 import time
@@ -50,7 +51,7 @@ def called():
 	
 def greetResp():
 	#Computer response to a common greeting
-	pygame.mixer.music.load('greetFile.mp3')
+	pygame.mixer.music.load(random.choice('greet1File.mp3', 'greet2File.mp3', 'greet3File.mp3', 'greet4File.mp3', 'greet5File.mp3', 'greet6File.mp3'))
 	pygame.mixer.music.play()
 	time.sleep(2)
 	
@@ -92,22 +93,50 @@ def passPrompt():
 	pygame.mixer.music.play()
 	time.sleep(3)
 	
-def passCorrect():
-	#Notify user that the password entered was correct
+def passCorrect1():
+	#Notify user that the password spoken was correct
 	print("Access granted. Welcome, Craig!")
-	pygame.mixer.music.load('pass1File.mp3')
+	pygame.mixer.music.load('pass11File.mp3')
 	pygame.mixer.music.play()
 	time.sleep(6)
 	
-def passIncorrect():
-	#Notify user that the passwored entered was incorrect
-	print("Access denied.")
-	pygame.mixer.music.load('pass0File.mp3')
+def passCorrect2():
+	#Notify user that the passwerd typed was correct
+	print("Access granted. Welcome!")
+	pygame.mixer.music.load('pass12File.mp3')
 	pygame.mixer.music.play()
-	time.sleep(2)
+	time.sleep(
 	
-#def passNum():
-	#Notify user how many attempts are remaining
+def passIncorrect(b):
+	#Notify user that the password spoken was incorrect
+	if b == 0:
+		print("Access denied.")
+		pygame.mixer.music.load('pass01File.mp3')
+		pygame.mixer.music.play()
+		time.sleep(2)
+	if b == 1:
+		print("Access denied. Again.")
+		pygame.mixer.music.load('pass02File.mp3')
+		pygame.mixer.music.play()
+		times.sleep(5)
+	if b == 2:
+		print("Access denied. Again.")
+		pygame.mixer.music.load('pass03File.mp3')
+		pygame.mixer.music.play()
+		time.sleep(6)
+		
+def passIncorrecT(c):
+	#Notify user that the passwerd typed was incorrect
+	if c == 0:
+		print("Access denied.")
+		pygame.mixer.music.load('pass04File.mp3')
+		pygame.mixer.music.play()
+		time.sleep(4)
+	if c > 0:
+		print("Access denied. Again")
+		pygame.mixer.music.load('pass01File.mp3')
+		pygame.mixer.music.play()
+		time.sleep(2)
 
 #Open def---------------------------------------------------------------
 	#App----------------------------------------------------------------
@@ -121,7 +150,7 @@ def openAResp():
 def openingApp():
 	#Notify user that the selected application is being opened
 	print("Opening application...")
-	pygame.mixer.music.load('openingAFile.mp3')
+	pygame.mixer.music.load(random.choice('openingAFile.mp3', 'openingFile.mp3', 'willdoFile.mp3'))
 	pygame.mixer.music.play()
 	time.sleep(3)
 
@@ -136,7 +165,7 @@ def openFResp():
 def openingFile():
 	#Notify user that the selected file is being opened
 	print("Opening file...")
- 	pygame.mixer.music.load('openingFFile.mp3')
+ 	pygame.mixer.music.load(random.choice('openingFFile.mp3', 'openingFile.mp3', 'willdoFile.mp3'))
 	pygame.mixer.music.play()
 	time.sleep(3)
 
@@ -151,7 +180,7 @@ def openSResp():
 def openingSite():
 	#Notify user that the selected site is being opened
 	print("Opening site...")
-	pygame.mixer.music.load('openingSFile.mp3')
+	pygame.mixer.music.load(random.choice('openingSFile.mp3', 'openingFile.mp3', 'willdoFile.mp3'))
 	pygame.mixer.music.play()
 	time.sleep(3)
 	
@@ -166,7 +195,7 @@ def playSample():
 def playingSample():
 	#Notify user that the selected audio file is being sampled
 	print("Playing audio...")
- 	pygame.mixer.music.load('playingAFile.mp3')
+ 	pygame.mixer.music.load(random.choice('playingAFile.mp3', 'playingFile.mp3', 'willdoFile.mp3'))
 	pygame.mixer.music.play()
 	time.sleep(3)
 
@@ -175,7 +204,8 @@ def playingSample():
 def main():
 	#Establish variables for general use
 	a = 0
-	i = 0
+	b = 0
+	c = 0
 	
 	with sr.Microphone() as source:
 		#Set microphone as listening device and calibrate
@@ -213,28 +243,36 @@ def main():
 			unknown()
 		for code in password:
 			#Check if password entered is correct
-			for i < 3:
+			for b < 3:
 				#Give user three vocal attempts to enter password
 				if code in com2:
 					#Grant user access if password is correct
-					passCorrect()
+					passCorrect1()
 					a += 1
-					i += 4
+					b += 5
 				else:
-					#Deny user access if password in incorrect
+					#Deny user access if password is incorrect
 					passIncorrect()
-					i += 1
-			for i == 3:
+					for b <= 3:
+						passIncorrect(b)
+						b += 1
+			for b == 3:
 				#Give user typed input option if vocal attempts could not be understood
 				userInpuT(com2)
 				if code in com2:
-					passCorrect()
+					passCorrect2()
 					#Notify user that ACS is ready to receive user commands
 					await()
 					a += 1
-					i += 1
+					b += 1
+					c += 2
 				else:
-					passIncorrect()
+					#Deny user access if password is incorrect
+					for c < 1:
+						passIncorrecT(c)
+						c += 1
+					for c == 1:
+						passIncorrect(c)
 	
 	while a == 2:
 		#Wait for user to address ACS
