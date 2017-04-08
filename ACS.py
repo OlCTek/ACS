@@ -19,7 +19,7 @@ import os
 #Define key words for commands
 name = ["ace"]
 greet = ["hello", "hi", "hey"]
-initiate = ["initiate"]
+initiate = ["initiate", "begin", "wake"]
 password = ["three four four seven"]
 openApp = ["open"]
 openFile = ["open", "file"] 
@@ -215,10 +215,10 @@ def main():
 		
 	while a == 0:
 		#Wait for user to initiate code
-		await()
+		awaitUser()
 		try:
 			#Listen for audio input
-			com1 = ac.recognize_sphinx(audio)
+			com1 = ac.recognize_sphinx(audioIn)
 			print(userSaid + com1)
 		except sr.UnknownValueError:
 			#Notify user that ACS could not understand audio input
@@ -233,10 +233,10 @@ def main():
 				
 	while a == 1:
 		#Wait for user to input password
-		await()
+		awaitUser()
 		try:
 			#Listen for audio input
-			com2 = ac.recognize_sphinx(audio)
+			com2 = ac.recognize_sphinx(audioIn)
 			print(userSaid + com2)
 		except sr.UnknownValueError:
 			#Notify user that ACS could not understand audio input
@@ -262,7 +262,7 @@ def main():
 				if code in com2:
 					passCorrect2()
 					#Notify user that ACS is ready to receive user commands
-					await()
+					awaitUser()
 					a += 1
 					b += 1
 					c += 2
@@ -278,7 +278,7 @@ def main():
 		#Wait for user to address ACS
 		try:
 			#Listen for audio input
-			com3 = ac.recognize_sphinx(audio)
+			com3 = ac.recognize_sphinx(audioIn)
 			print(userSaid + com3)
 		except sr.UnknownValueError:
 			#Notify user that ACS could not understand audio input
@@ -290,7 +290,7 @@ def main():
 				called()
 				try:
 					#Listen for audio input
-					com4 = ac.recognize_sphinx(audio)
+					com4 = ac.recognize_sphinx(audioIn)
 					print(userSaid + com4)
 				except sr.UnknownValueError:
 					#Notify user that ACS could not understand audio input
@@ -307,7 +307,7 @@ def main():
 						openAResp()
 						try:
 							#Listen for audio input
-							com5 = ac.recognize_sphinx(audio)
+							com5 = ac.recognize_sphinx(audioIn)
 							print(userSaid + com5)
 						except sr.UnknownValueError:
 							#Notify user that ACS could not understand audio input
