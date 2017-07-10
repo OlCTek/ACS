@@ -1,4 +1,7 @@
 # ACS
+
+EDIT: Please see AIVA program on my profile for further updates. This project will be continued there. 
+
 Artificial Control System 
 This is a background voice assistant that can respond to vocal input and recognize the user. 
 Things currently in the works:
